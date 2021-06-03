@@ -3,25 +3,24 @@ version: "3"
 volumes:
     mysql_volume:
 
-services:
-    loghistory:
-        build: ./
-        restart: always
-        ports:
-            - 3000:3000
-        environment:
-            - TZ=Europe/Moscow
-            - DB_USER=
-            - DB_PASSWORD=
-            - DB_NAME=
-    
+services:    
     mysqldb:
         image: mysql
         restart: always
         volumes:
             - mysql_volume:/var/lib/mysql
         environment:
-            - MYSQL_ROOT_PASSWORD=
-            - MYSQL_DATABASE=
-            - MYSQL_USER=
-            - MYSQL_PASSWORD=
+            - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+            - MYSQL_DATABASE=${DB_NAME}
+            - MYSQL_USER=${DB_USER}
+            - MYSQL_PASSWORD=${DB_PASSWORD}
+    loghistory:
+        build: ./
+        restart: always
+        depends_on:
+            - mysqldb
+        ports:
+            - 3000:3000
+        environment:
+            - TZ=Europe/Moscow
+            - DB_HOST=mysqldb
