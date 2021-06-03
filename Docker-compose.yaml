@@ -2,6 +2,9 @@ version: "3"
 
 volumes:
     mysql_volume:
+    ngnix_volume:
+networks:
+    app:
 
 services:    
     mysqldb:
@@ -14,6 +17,8 @@ services:
             - MYSQL_DATABASE=${DB_NAME}
             - MYSQL_USER=${DB_USER}
             - MYSQL_PASSWORD=${DB_PASSWORD}
+        networks:
+            - app
     loghistory:
         build: ./
         restart: always
@@ -27,7 +32,18 @@ services:
             - DB_USER=
             - DB_PASSWORD=
             - DB_NAME=
-            - DB_HOST=
             - DB_PORT=
             - DB_SYNCHRONIZE=
             - DB_ROOT_PASSWORD=
+        networks:
+            - app
+    nginx:
+        image: nginx
+        restart: always
+        ports:
+            "80:80"
+        volumes:
+            - ngnix_volume:/etc/nginx/conf.d
+        environment:
+            - NGINX_HOST=
+            - NGINX_PORT=80
