@@ -5,7 +5,8 @@ import * as bcrypt from 'bcrypt';
 import { Repository } from 'typeorm';
 import { CreateLogDto } from './dto/create-log.dto';
 import { Logs } from './log.entity';
-import { Users } from 'src/user.entity';
+import { Users } from 'src/user/user.entity';
+import { LogItems } from 'src/log-item/log-item.entity';
 
 @Injectable()
 export class LogService {
@@ -16,7 +17,9 @@ export class LogService {
         @InjectRepository(Logs)
         private logsRepository: Repository<Logs>,
         @InjectRepository(Users)
-        private userRepository: Repository<Users>
+        private userRepository: Repository<Users>,
+        @InjectRepository(LogItems)
+        private logItemsRepository: Repository<LogItems>,
     ) {}
 
     async create( createLogDto: CreateLogDto): Promise<Logs | { error: any }> {

@@ -3,5 +3,5 @@ export class CreateLogDto {
     readonly description: string;
     readonly username?: string;
     readonly password?: string;
-    readonly items: Array<any>;
+    readonly items?: Array<any>;
 }
