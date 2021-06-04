@@ -31,9 +31,9 @@ services:
             - DB_HOST=mysqldb
             - DB_USER=
             - DB_PASSWORD=
-            - DB_NAME=
-            - DB_PORT=
-            - DB_SYNCHRONIZE=
+            - DB_NAME=loghistory
+            - DB_PORT=3306
+            - DB_SYNCHRONIZE=true
             - DB_ROOT_PASSWORD=
         networks:
             - app

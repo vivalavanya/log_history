@@ -6,11 +6,12 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 
 import { LogModule } from './log/log.module';
+import { LogItemModule } from './log-item/log-item.module';
 
 
 
 @Module({
-  imports: [TypeOrmModule.forRoot(), UserModule, LogModule],
+  imports: [TypeOrmModule.forRoot(), UserModule, LogModule, LogItemModule],
   controllers: [AppController],
   providers: [AppService],
 })
