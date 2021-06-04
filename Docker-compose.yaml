@@ -37,13 +37,3 @@ services:
             - DB_ROOT_PASSWORD=
         networks:
             - app
-    nginx:
-        image: nginx
-        restart: always
-        ports:
-            "80:80"
-        volumes:
-            - ngnix_volume:/etc/nginx/conf.d
-        environment:
-            - NGINX_HOST=
-            - NGINX_PORT=80
