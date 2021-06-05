@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { User } from 'src/user/user.decorator';
 import { CreateLogDto } from './dto/create-log.dto';
@@ -24,10 +24,10 @@ export class LogController {
 
     @Get('/get')
     getAll(
-        @Body() body:any,
+        @Param() param:any,
         @User() user,
     ): Promise<Logs[] | { error: string }> {
-        return this.logService.getAll(user.username, user.password, body.skip, body.take);
+        return this.logService.getAll(user.username, user.password, param.skip, param.take);
     }
     @Get('/get/one')
     getOne(

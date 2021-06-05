@@ -33,13 +33,17 @@ export class LogService {
         });
     }
 
-    async getAll(username, password): Promise<Logs[]> {
+    async getAll(username, password, skip = 0, take = 100): Promise<Logs[]> {
         const user = await this.userValidate(username, password);
         return this.logsRepository.find(
-            {order: {
-                id: "ASC",
+            {
+                order: {
+                    id: "ASC",
+                },
+                skip,
+                take
             }
-        });
+        );
     }
 
     async getOne(username, password, url): Promise<Logs[]> {
