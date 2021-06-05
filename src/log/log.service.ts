@@ -38,7 +38,7 @@ export class LogService {
         return this.logsRepository.find(
             {
                 order: {
-                    id: "ASC",
+                    id: "DESC",
                 },
                 skip,
                 take
@@ -49,6 +49,11 @@ export class LogService {
     async getOne(username, password, url): Promise<Logs[]> {
         const user = await this.userValidate(username, password);
         return this.logsRepository.find({url});
+    }
+
+    async getOneById(username, password, id): Promise<Logs> {
+        const user = await this.userValidate(username, password);
+        return this.logsRepository.findOne({id}, { relations: ["items"] });
     }
 
     async userValidate(username:string, password:string): Promise<Users>{
