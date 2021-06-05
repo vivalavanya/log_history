@@ -24,9 +24,10 @@ export class LogController {
 
     @Get('/get')
     getAll(
+        @Body() body:any,
         @User() user,
     ): Promise<Logs[] | { error: string }> {
-        return this.logService.getAll(user.username, user.password);
+        return this.logService.getAll(user.username, user.password, body.skip, body.take);
     }
     @Get('/get/one')
     getOne(

@@ -35,7 +35,11 @@ export class LogService {
 
     async getAll(username, password): Promise<Logs[]> {
         const user = await this.userValidate(username, password);
-        return this.logsRepository.find();
+        return this.logsRepository.find(
+            {order: {
+                id: "ASC",
+            }
+        });
     }
 
     async getOne(username, password, url): Promise<Logs[]> {

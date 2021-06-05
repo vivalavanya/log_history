@@ -10,7 +10,7 @@ export class Logs {
   @Column()
   url: string;
 
-  @Column()
+  @Column("text")
   description: string;
 
   @Column({type:'datetime'})

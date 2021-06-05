@@ -9,10 +9,10 @@ export class LogItems {
   @Column()
   key: string;
 
-  @Column()
+  @Column("text")
   old: string;
 
-  @Column()
+  @Column("text")
   new: string;
 
   @ManyToOne(() => Logs, (log) => log.items)
