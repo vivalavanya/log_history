@@ -8,7 +8,7 @@ export class Logs {
   id: number;
 
   @Column()
-  url: string;
+  page_id: string;
 
   @Column("text")
   description: string;

@@ -46,9 +46,9 @@ export class LogService {
         );
     }
 
-    async getOne(username, password, url): Promise<Logs[]> {
+    async getOne(username, password, page_id): Promise<Logs[]> {
         const user = await this.userValidate(username, password);
-        return this.logsRepository.find({url: decodeURIComponent(url)});
+        return this.logsRepository.find({page_id});
     }
 
     async getOneById(username, password, id): Promise<Logs> {
