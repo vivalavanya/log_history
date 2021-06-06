@@ -48,7 +48,7 @@ export class LogService {
 
     async getOne(username, password, url): Promise<Logs[]> {
         const user = await this.userValidate(username, password);
-        return this.logsRepository.find({url});
+        return this.logsRepository.find({url: decodeURIComponent(url)});
     }
 
     async getOneById(username, password, id): Promise<Logs> {
