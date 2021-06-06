@@ -15,10 +15,7 @@ export class LogItems {
   @Column("text")
   new: string;
 
-  @ManyToOne(() => Logs, (log) => log.items, {
-    cascade: ['insert', 'remove', 'update'],
-    onDelete: 'CASCADE',
-  })
+  @ManyToOne(() => Logs, (log) => log.items)
   @JoinColumn()
   log: Logs;
 }
