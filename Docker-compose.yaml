@@ -35,5 +35,6 @@ services:
             - DB_PORT=3306
             - DB_SYNCHRONIZE=true
             - DB_ROOT_PASSWORD=
+            - DB_CHARSET=utf8mb4_unicode_ci
         networks:
             - app
