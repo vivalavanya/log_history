@@ -34,7 +34,7 @@ export class LogController {
         @Query() query:any,
         @User() user,
     ): Promise<Logs[] | { error: string }> {
-        return this.logService.getOne(user.username, user.password, query.url);
+        return this.logService.getOne(user.username, user.password, query.page_id);
     }
 
     @Get('/get/:id')
